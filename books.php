@@ -17,6 +17,7 @@ $books=$book_controller->getBooks();
             <thead>
                 <th>No</th>
                 <th>Title</th>
+                <th>Image</th>
                 <th>Category</th>
                 <th>Price</th>
                 <th>Stock</th>
@@ -29,19 +30,20 @@ $books=$book_controller->getBooks();
                 <?php
                     $i=0;
                     foreach($books as $book){
-                        echo "<tr>";
-                        echo "<td>".(++$i)."</td>";
-                        echo "<td>".$book['title']."</td>";
-                        echo "<td>".$book['category']."</td>";
-                        echo "<td>".$book['price']."</td>";
-                        echo "<td>".$book['stock']."</td>";
-                        echo "<td>".$book['status']."</td>";
-                        echo "<td>".$book['author']."</td>";
-                        echo "<td>".$book['publisher']."</td>";
-                        echo "<td>";
-
-                        echo "</td>";
-                        echo "</tr>";
+                        if($book['delete_status']!='deleted'){
+                            echo "<tr class='book' id='".$book['id']."'>";
+                            echo "<td>".(++$i)."</td>";
+                            echo "<td>".$book['title']."</td>";
+                            echo "<td><img src='BookImages/".$book['image']."' width='90px' height='120px' /></td>";
+                            echo "<td>".$book['category']."</td>";
+                            echo "<td>".$book['price']."</td>";
+                            echo "<td>".$book['stock']."</td>";
+                            echo "<td>".$book['status']."</td>";
+                            echo "<td>".$book['author']."</td>";
+                            echo "<td>".$book['publisher']."</td>";
+                            echo "<td><a class='btn btn-warning' href='viewBook.php?id=".$book['id']."'>View</a><a class='btn btn-success' href='bookEdit.php?id=".$book['id']."'>Edit</a><form action=''><button class='btn btn-danger deleteBook'>Delete</button></form></td>";
+                            echo "</tr>";
+                        }
                     }
                 ?>
             </tbody>

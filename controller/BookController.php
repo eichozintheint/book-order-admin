@@ -12,8 +12,20 @@ class BookController{
         return $this->book->getBooks();
     }
 
-    public function addBook($title,$category,$price,$stock,$status,$author,$publisher,$description,$edition,$pages,$rating,$published_date,$discount){
-        return $this->book->addBook($title,$category,$price,$stock,$status,$author,$publisher,$description,$edition,$pages,$rating,$published_date,$discount);
+    public function addBook($title,$f_name,$category,$price,$stock,$status,$author,$publisher,$description,$edition,$pages,$rating,$published_date,$discount){
+        return $this->book->addBook($title,$f_name,$category,$price,$stock,$status,$author,$publisher,$description,$edition,$pages,$rating,$published_date,$discount);
+    }
+
+    public function getBook($bookId){
+        return $this->book->getBook($bookId);
+    }
+
+    public function updateBook($bookId,$title,$f_name,$category,$price,$stock,$status,$author,$publisher,$description,$edition,$pages,$rating,$published_date,$discount){
+        return $this->book->updateBook($bookId,$title,$f_name,$category,$price,$stock,$status,$author,$publisher,$description,$edition,$pages,$rating,$published_date,$discount);
+    }
+
+    public function deleteBook($bookId){
+        return $this->book->deleteBook($bookId);
     }
 
 

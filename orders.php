@@ -27,33 +27,38 @@ $orders=$order_controller->getOrders();
                     <th>Total Qty</th>
                     <th>Total</th>
                     <th>Order Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
                     $i=0;
                     foreach($orders as $order){
-                        echo "<tr class='order' id='".$order['id']."'>";
-                        echo "<td>".(++$i)."</td>";
-                        echo "<td>".$order['id']."</td>";
-                        echo "<td>".$order['username']."</td>";
-                        echo "<td>".$order['receiver_name']."</td>";
-                        echo "<td>".$order['receiver_phone']."</td>";
-                        echo "<td>".$order['receiver_address']."</td>";
-                        echo "<td>".$order['township']."</td>";
-                        echo "<td>".$order['payment']."</td>";
-                        echo "<td>".$order['total_price']."</td>";
-                        echo "<td>".$order['total_qty']."</td>";
-                        echo "<td>".$order['total']."</td>";
-                        
-                        if($order['order_status']=='pending'){
-                            echo "<td><form action=''><button class='btn btn-warning orderApproveBtn'>".$order['order_status']."</button></form></td>";
+                        if($order['delete_status']==null){
+                            echo "<tr class='order' id='".$order['id']."'>";
+                            echo "<td>".(++$i)."</td>";
+                            echo "<td>".$order['id']."</td>";
+                            echo "<td mail='".$order['email']."'>".$order['email']."</td>";
+                            echo "<td>".$order['receiver_name']."</td>";
+                            echo "<td>".$order['receiver_phone']."</td>";
+                            echo "<td>".$order['receiver_address']."</td>";
+                            echo "<td>".$order['township']."</td>";
+                            echo "<td>".$order['payment']."</td>";
+                            echo "<td>".$order['total_price']."</td>";
+                            echo "<td>".$order['total_qty']."</td>";
+                            echo "<td>".$order['total']."</td>";
+                            
+                            if($order['order_status']=='pending'){
+                                echo "<td><form action=''><button class='btn btn-warning orderApproveBtn'>Pending</button></form></td>";
+                            }
+                            else{
+                                echo "<td><form action=''><button class='btn btn-info orderApproveBtn'>Approve</button></form></td>";
+                            }
+
+                            echo "<td><button class='btn btn-danger deleteOrder'>Delete</button></td>";
+                            
+                            echo "</tr>";
                         }
-                        else{
-                            echo "<td><form action=''><button class='btn btn-info orderApproveBtn'>".$order['order_status']."</button></form></td>";
-                        }
-                        
-                        echo "</tr>";
                     }
                 ?>
             </tbody>
